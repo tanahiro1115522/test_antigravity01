@@ -1,0 +1,283 @@
+:root {
+  font-family: 'Mochiy Pop One', sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color-scheme: light;
+  color: #4a4a4a;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f0f0;
+  background-image: radial-gradient(#ff9a9e 20%, transparent 20%),
+      radial-gradient(#fad0c4 20%, transparent 20%);
+  background-size: 50px 50px;
+  background-position: 0 0, 25px 25px;
+  animation: backgroundScroll 20s linear infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes backgroundScroll {
+  0% { background-position: 0 0, 25px 25px; }
+  100% { background-position: 50px 50px, 75px 75px; }
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* テレビの筐体 */
+.tv-frame {
+  position: relative;
+  width: 90vw;
+  height: 80vh;
+  max-width: 1000px;
+  max-height: 800px;
+  background: #ff6b6b; /* ベースカラー */
+  background: linear-gradient(145deg, #ff7272, #e66060); /* 立体的なグラデーション */
+  border-radius: 50px;
+  padding: 40px;
+  box-shadow: 
+    inset 5px 5px 15px rgba(255, 255, 255, 0.4), /* ハイライト */
+    inset -5px -5px 15px rgba(0, 0, 0, 0.2), /* シャドウ */
+    20px 20px 60px rgba(0, 0, 0, 0.4), /* ドロップシャドウ */
+    -5px -5px 20px rgba(255, 255, 255, 0.5); /* アンビエント光 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid rgba(0,0,0,0.1);
+}
+
+/* コントロールパネル */
+.controls {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  z-index: 10; /* 画面の前に表示 */
+}
+
+/* 電源ボタン */
+.power-button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #444, #222);
+  box-shadow: 
+    inset 2px 2px 5px rgba(0,0,0,0.5),
+    inset -2px -2px 5px rgba(255,255,255,0.1),
+    0 4px 8px rgba(0,0,0,0.3);
+  position: relative;
+  cursor: pointer;
+}
+
+.power-button::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff4444;
+  box-shadow: 0 0 10px rgba(255, 68, 68, 0.8);
+}
+
+/* ダイヤルグループ */
+.dial-group {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ダイヤル */
+.dial {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #555, #333);
+  box-shadow: 
+    inset 3px 3px 6px rgba(0,0,0,0.6),
+    inset -3px -3px 6px rgba(255,255,255,0.1),
+    0 5px 10px rgba(0,0,0,0.3);
+  position: relative;
+  cursor: pointer;
+}
+
+.dial-indicator {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 12px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* スピーカーグリル */
+.speaker-grill {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 200px;
+  background: #333;
+  border-radius: 10px;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  padding: 8px;
+  z-index: 10; /* 画面の前に表示 */
+}
+
+.speaker-grill::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.3) 3px,
+    rgba(0,0,0,0.3) 6px
+  );
+  border-radius: 10px;
+}
+
+
+/* テレビの画面 */
+.tv-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #111; /* より深い黒 */
+  border-radius: 120px / 100px;
+  overflow: hidden;
+  box-shadow: 
+    inset 0 0 80px rgba(0, 0, 0, 0.9), /* 画面の奥まり */
+    0 0 0 15px #d64545, /* ベゼル */
+    0 0 20px rgba(0,0,0,0.5); /* ベゼルの影 */
+  border: 4px solid #333; /* 画面の縁 */
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  outline: none;
+}
+
+/* 走査線エフェクト */
+.scanlines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0),
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.2) 50%, /* 少し濃く */
+    rgba(0, 0, 0, 0.2)
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 5;
+  animation: scanline 0.3s linear infinite; /* 速くしてちらつき感を出す */
+  opacity: 0.6;
+}
+
+/* ノイズエフェクト */
+.noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+  opacity: 0.08; /* 薄く表示 */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  animation: noise 0.5s steps(5) infinite;
+}
+
+@keyframes noise {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-5%, -5%); }
+  40% { transform: translate(-5%, 5%); }
+  60% { transform: translate(5%, -5%); }
+  80% { transform: translate(5%, 5%); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes scanline {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 4px; }
+}
+
+/* 画面の反射（光沢） */
+.tv-screen::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.15), transparent 50%);
+  box-shadow: inset 0 0 100px rgba(255,255,255,0.05); /* 全体的なグロー */
+  pointer-events: none;
+  z-index: 6;
+  border-radius: 120px / 100px;
+}
+
+/* UIコンテナ */
+.ui-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 15px 25px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+  pointer-events: none;
+  max-width: 280px;
+  transform: rotate(-2deg); /* 少し傾けてポップさを演出 */
+}
+
+h1 {
+  margin: 0 0 10px 0;
+  font-size: 1.8em;
+  color: #ff6b6b;
+  text-shadow: 1px 1px 0px #fff;
+}
+
+p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #333;
+  font-weight: bold;
+}

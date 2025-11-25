@@ -88,7 +88,7 @@ scene.add(particlesMesh);
 let model;
 const loader = new GLTFLoader();
 loader.load(
-  '/usagi.glb',
+  './usagi.glb',
   (gltf) => {
     model = gltf.scene;
     model.scale.set(10, 10, 10);
